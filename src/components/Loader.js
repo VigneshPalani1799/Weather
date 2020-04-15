@@ -1,16 +1,17 @@
+import './Loader.css';
 import React from 'react';
 
 const Loader = (props) => {
     return (
         <div className="ui active dimmer">
-            <div className="ui big text loader">{props.message}</div>
+            <div className="loader"></div>
+            <h3 style={{ color:"#ECF0F1"}}>{props.message}</h3>
         </div>
     );
 };
 
 Loader.defaultProps = {
     message: "Loading...",
-    info: "Sorry"
 };
 
 export default Loader;
