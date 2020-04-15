@@ -1,5 +1,6 @@
-﻿import React from 'react';
-import Search from './Search.js';
+﻿import Search from './Search.js';
+import './Style.css';
+import React from 'react';
 import axios from 'axios';
 
 class Weather extends React.Component {
@@ -16,7 +17,8 @@ class Weather extends React.Component {
         humidity:"--",
         icon: "",
         id: "",
-        lang:"en"
+        lang: "en",
+        mode:"light"
     };
 
     api = {
@@ -58,10 +60,17 @@ class Weather extends React.Component {
             })
             .catch(err => alert("Make sure you typed proper city name"));
     };
-    //41d73973931e4b93a91461b3cbfa7a5a
+
+    setTheme(event) {
+        event.preventDefault();
+        if (event.target.value === 'light')
+            this.setState({ mode: 'dark' })
+        else
+            this.setState({mode:'light'})
+    }
     onSearchlocation = () => {
         if (this.props.lat === null) {
-            alert("You have blocked location access");
+            alert("Unable to fetch location at the moment");
         }
         else {
             axios.all([
@@ -87,15 +96,24 @@ class Weather extends React.Component {
 
     render() {
         return (
-            <div className="">
-                <div className="jumbotron text-center" style={{ backgroundColor: "#2ECC71 ",color:"#E5E7E9" }}>
+            <div className={`${this.state.mode}-color`}>
+                <div className={`${this.state.mode}-header jumbotron text-center`}>
                     <h1 className="display-3">
                         Weather Map
                     <i className="cloud icon" />
                     </h1>
                 </div>
-
+                
                 <div className="navbar navbar-light" style={{ backgroundColor: "#17202A " }}>
+                    <div>
+                        <label className="switch">
+                            <input type="checkbox"
+                                value={this.state.mode}
+                                onClick={e => this.setTheme(e)}
+                            />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
                     <select className="ui search dropdown"
                         style={{ maxHeight: "5", float: "left" }}
                         value={ this.state.lang }
@@ -150,7 +168,7 @@ class Weather extends React.Component {
                     </select>
                 </div>
 
-                <div style={{ backgroundColor:"" }}>
+                <div>
                     <div className="mt-5 container">
                         <Search handleSubmit={this.onSearchSubmit} />
                         <div className="text-center mt-2">
@@ -162,44 +180,44 @@ class Weather extends React.Component {
                     <div className="container-fluid mt-5">
                         <div className="row">
                             <div className="col-sm-4">
-                                <h1 className="ui header display-3 "style={{ color:"#2ECC71"}}>Current</h1>
-                                <p className="display-4" style={{ color:"#17202A"}}>{this.state.temperature}</p>
+                                <h1 className="ui header display-3 " style={{ color: "#2ECC71" }}>Current</h1>
+                                <p className={`${this.state.mode}-font display-4`}>{this.state.temperature}</p>
                             </div>
                             <div className="col-sm-4 mt-1 text-center">
                                 <h1 className="ui header display-3" style={{ color: "#2ECC71" }}>Max-Temp</h1>
-                                <p className="display-4 text-center" style={{ color: "#17202A" }}>{this.state.temp_max}
+                                <p className={`${this.state.mode}-font display-4`}>{this.state.temp_max}
                                 </p>
                             </div>
                             <div className="col-sm-4 mt-1 text-right">
                                 <h1 className="ui header display-3" style={{ color: "#2ECC71" }}>Min-Temp</h1>
-                                <p className="display-4" style={{ color: "#17202A" }}>{this.state.temp_min}
+                                <p className={`${this.state.mode}-font display-4`}>{this.state.temp_min}
                                 </p>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-sm-4">
                                 <h1 className="ui header display-3 " style={{ color: "#2ECC71" }}>Feels like</h1>
-                                <p className="display-4" style={{ color: "#17202A" }}>{this.state.feels_like}</p>
+                                <p className={`${this.state.mode}-font display-4`}>{this.state.feels_like}</p>
                             </div>
                             <div className="col-sm-4 mt-1 text-center">
                                 <h1 className="ui header display-3" style={{ color: "#2ECC71" }}>Wind Speed</h1>
-                                <p className="display-4 text-center" style={{ color: "#17202A" }}>{(this.state.wind_speed)}
+                                <p className={`${this.state.mode}-font display-4`}>{(this.state.wind_speed)}
                                 </p>
                             </div>
                             <div className="col-sm-4 mt-1 text-right">
                                 <h1 className="ui header display-3" style={{ color: "#2ECC71" }}>Humidity</h1>
-                                <p className="display-4" style={{ color: "#17202A" }}>{(this.state.humidity)}
+                                <p className={`${this.state.mode}-font display-4`}>{(this.state.humidity)}
                                 </p>
                             </div>
                         </div>
                         <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <h2 className="display-3" style={{ color:"#2ECC71"}}>City</h2>
-                                <p className="display-4" style={{ color: "#17202A" }}>{this.state.city}</p>
+                                <p className={`${this.state.mode}-font display-4`}>{this.state.city}</p>
                             </div>
                             <div className="col-sm-6 text-center">
                                 <h2 className="display-4" style={{ color: "#2ECC71" }}>Description</h2>
-                                <p className="display-4" style={{ color: "#17202A" }}>{this.state.description}</p>
+                                <p className={`${this.state.mode}-font display-4`}>{this.state.description}</p>
                             </div>
                         </div>
                         <div className="container-fluid text-center">
@@ -212,7 +230,7 @@ class Weather extends React.Component {
                     <h1 className="ui header text-center">Follow me</h1>
                 </div>
 
-                <div style={{ backgroundColor:"" }}>
+                <div>
                     <footer className="page-footer font-small cyan darken-3">
                         <div className="text-center container">
                             <div className="row">
@@ -235,7 +253,7 @@ class Weather extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="footer-copyright text-center py-3">
+                            <div className={`${this.state.mode}-font footer-copyright text-center py-3`}>
                                 ©Api Used OpenWeatherMap and OpencageGeocoder
                             </div>
                         </div>
