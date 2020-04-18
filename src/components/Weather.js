@@ -114,18 +114,16 @@ class Weather extends React.Component {
                             temp_min: (response[0].data.main.temp_min - 273.15).toFixed(2),
                             icon: response[0].data.weather[0].icon,
                             description: response[0].data.weather[0].description,
-                            feels_like: (response[0].data.main.feels_like - 273.15).toFixed(
-                                2
-                            ),
+                            feels_like: (response[0].data.main.feels_like - 273.15).toFixed(2),
                             city: response[1].data.results[0].components.city,
                             wind_speed: response[0].data.wind.speed,
                             humidity: response[0].data.main.humidity,
-                            isLoading: false, //this line has been added
+                            isLoading: false,
                         });
                     })
                     .catch((err) => {
                         console.log(err);
-                        alert("Not able to fetch"); //this line has been added
+                        alert("Not able to fetch"); 
                     });
             }
         });
@@ -255,7 +253,7 @@ class Weather extends React.Component {
                                     style={{ color: "#2ECC71" }}
                                 >
                                     Max-Temp
-                </h1>
+                                </h1>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.temp_max !== "--" &&
                                         !this.state.isLoading &&
@@ -279,7 +277,7 @@ class Weather extends React.Component {
                                     style={{ color: "#2ECC71" }}
                                 >
                                     Min-Temp
-                </h1>
+                                </h1>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.temp_min !== "--" &&
                                         !this.state.isLoading &&
@@ -305,7 +303,7 @@ class Weather extends React.Component {
                                     style={{ color: "#2ECC71" }}
                                 >
                                     Feels like
-                </h1>
+                                </h1>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.temp_min !== "--" &&
                                         !this.state.isLoading &&
@@ -329,7 +327,7 @@ class Weather extends React.Component {
                                     style={{ color: "#2ECC71" }}
                                 >
                                     Wind Speed
-                </h1>
+                                </h1>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.wind_speed !== "--" &&
                                         !this.state.isLoading &&
@@ -353,7 +351,7 @@ class Weather extends React.Component {
                                     style={{ color: "#2ECC71" }}
                                 >
                                     Humidity
-                </h1>
+                                </h1>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.humidity !== "--" &&
                                         !this.state.isLoading &&
@@ -376,7 +374,7 @@ class Weather extends React.Component {
                             <div className="col-sm-6 text-center">
                                 <h2 className="display-3" style={{ color: "#2ECC71" }}>
                                     City
-                </h2>
+                                </h2>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.city !== "--" &&
                                         !this.state.isLoading &&
@@ -397,7 +395,7 @@ class Weather extends React.Component {
                             <div className="col-sm-6 text-center">
                                 <h2 className="display-4" style={{ color: "#2ECC71" }}>
                                     Description
-                </h2>
+                                </h2>
                                 <p className={`${this.state.mode}-font display-4`}>
                                     {this.state.description !== "--" &&
                                         !this.state.isLoading &&
@@ -430,10 +428,8 @@ class Weather extends React.Component {
                     <footer className="page-footer font-small cyan darken-3">
                         <div className="text-center container">
                             <div className="row">
-                                <div
-                                    className="col-md-12 py-5"
-                                    style={{ alignContent: "center" }}
-                                >
+                                <div className="col-md-12 py-5"
+                                    style={{ alignContent: "center" }}>
                                     <div className="mb-5 flex-center">
                                         <a
                                             className="fb-ic"
@@ -464,11 +460,9 @@ class Weather extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                className={`${this.state.mode}-font footer-copyright text-center py-3`}
-                            >
+                            <div className={`${this.state.mode}-font footer-copyright text-center py-3`}>
                                 ©Api Used OpenWeatherMap and OpencageGeocoder
-              </div>
+                            </div>
                         </div>
                     </footer>
                 </div>
